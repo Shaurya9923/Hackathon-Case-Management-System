@@ -1,0 +1,375 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Repository of Court Case</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/0b1d7c9201.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/Dashboard/Dashboard.css' %}">
+    <script src="{% static 'js/Dashboard/Dashboard.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <nav id="sidebar">
+            <ul class="list-unstyled">
+                
+                <li>
+                    <a href="{% url 'nodaldashboard' user %}"><i class="fa fa-line-chart"
+                            style="margin-right: 10px; font-size: small;"></i>DashBoard</a>
+                </li>
+
+                <li id="drop1" onclick="Func1()">
+                    <a href="#" role="button"><i class="fa fa-file"
+                            style="margin-right: 10px; font-size: small;"></i>Cases<i class="fa fa-caret-down"
+                            style="margin-left: 103px;"></i></a>
+                </li>
+
+                <div class="dropdown-container" id="dropmenu1" style="display: block;">
+                    <li>
+                        <a href="{% url 'addcase' user %}">
+                            <i class="fa fa-plus" style="margin-right: 10px; font-size: small;"></i>Add Case</a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'viewcase' user %}">
+                            <i class="fa fa-eye" style="margin-right: 10px; font-size: small;"></i>View Case</a>
+                    </li>
+                </div>
+
+                <li id="drop2" onclick="Func2()">
+                    <a href="#" role="button"><i class="fa fa-address-card"
+                            style="margin-right: 10px; font-size: small;">
+                        </i>Lawyer<i class="fa fa-caret-down" style="margin-left: 93px;"></i></a>
+                </li>
+
+                <div class="dropdown-container" id="dropmenu2" style="display: none;">
+                    <li>
+                        <a href="{% url 'addlawyer' user %}">
+                            <i class="fa fa-plus" style="margin-right: 10px; font-size: small;"></i>Add Lawyer</a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'viewlawyer' user %}">
+                            <i class="fa fa-eye" style="margin-right: 10px; font-size: small;"></i>View Lawyer</a>
+                    </li>
+                </div>
+
+                <li>
+                    <a href="{% url 'invoicenodal' user%}" role="button" class="active"><i class="fa fa-file-text"
+                            style="margin-right: 10px; font-size: small;">
+                        </i>Invoice</a>
+                </li>
+                <li>
+                    <a href="{%url 'search' user%}" role="button"><i class="fa fa-search" style="margin-right: 10px; font-size: small;">
+                    </i>Search</a>
+                </li>
+                <!-- 
+                <div class="dropdown-container" id="dropmenu3" style="display: none;">
+                    <li>
+                        <a href="Add_Invoice.html">
+                            <i class="fa fa-plus" style="margin-right: 10px; font-size: small;"></i>Add Invoice</a>
+                    </li>
+
+                    <li>
+                        <a href="View_Invoice.html">
+                            <i class="fa fa-eye small" style="margin-right: 10px; font-size: small;"></i>View
+                            Invoice</a>
+                    </li>
+                </div> -->
+
+                <li id="drop4" onclick="Func4()">
+                    <a href="#" role="button">
+                        <i class="fa fa-users" style="margin-right: 10px; font-size: small;"></i>Users<i
+                            class="fa fa-caret-down" style="margin-left: 105px;"></i></a>
+                </li>
+
+                <div class="dropdown-container" id="dropmenu4" style="display: none;">
+                    <li>
+                        <a href="{% url 'adduser' user %}">
+                            <i class="fa fa-plus" style="margin-right: 10px; font-size: small;"></i>Add User</a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'viewuser' user %}">
+                            <i class="fa fa-eye small" style="margin-right: 10px; font-size: small;"></i>View User</a>
+                    </li>
+                </div>
+
+                <li>
+                    <a href="{% url 'notify' user %}"><i class="fa fa-bell"
+                            style="margin-right: 10px; font-size: small;"></i>Notification</a>
+                </li>
+
+                <li>
+                    <a href="{% url 'nodalmanageprofile' user %}"><i class="fa fa-user small" style="margin-right: 10px;"></i>Manage
+                        Profile</a>
+                </li>
+
+                <li>
+                    <a href="{% url 'logout' %}"><i class="fa fa-sign-out" style="margin-right: 10px; font-size: small;"></i>Log
+                        Out</a>
+                </li>
+            </ul>
+        </nav>
+
+
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-white">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn  btn-outline-dark">
+                        <i class="fas fa-align-left"></i>
+                        <span>Menu</span>
+                    </button>
+                </div>
+            </nav>
+
+            <!-- main body start -->
+            <div class="container">
+                <h1 class="display-5" style="display: flex; vertical-align: middle;">View Case</h1>
+                <hr class="my-4">
+
+
+
+                <form>
+                    <h4 style="font-weight: 600; margin-bottom: 15px;">Case And Lawyer Details</h4>
+                    <div class="form-row">
+                        <div class="form-group col-md-2">
+                            <label for="clientid">Case Id:</label>
+                            <input type="text" class="form-control" value="{{case.pk}}" readonly>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="Year">Case Type</label>
+                            <input type="text" class="form-control" value="{{case.type}}" readonly>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="Year">Case Subject</label>
+                            <input type="text" class="form-control" value="{{case.title}}" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="clientid">Lawyer Name</label>
+                            <input type="text" class="form-control" readonly value="{{c_l.lawyer.first_name}} {{c_l.lawyer.middle_name}} {{c_l.lawyer.last_name}}">
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="Year">Lawyer Email ID</label>
+                            <input type="text" class="form-control" readonly value="{{c_l.lawyer.email}}">
+                        </div>
+
+                    </div>
+
+                    <h4 style="font-weight: 600; margin-bottom: 15px; margin-top: 20px;">Opponent Details</h4>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="clientid">Opposition Client Name</label>
+                            <input type="text" class="form-control" readonly value="{{case.opponent_name}}">
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label for="Year">Opposition Client Email Id</label>
+                            <input type="text" class="form-control" readonly value="{{case.opponent_email}}">
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label for="Year">Opposition Client Number</label>
+                            <input type="number" class="form-control" readonly value="{{case.opponent_contact_no}}">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="clientid">Opposition Client Address</label>
+                            <input type="text" class="form-control"
+                                value="{{case.opponent_address}}"
+                                readonly>
+                        </div>
+                    </div>
+
+                    <h4 style="font-weight: 600; margin-bottom: 15px; margin-top: 20px;">Court Details</h4>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="clientid">Court Name</label>
+                            <input type="text" class="form-control" readonly value="{{case.court}}">
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label for="clientid">Court Type</label>
+                            <input type="text" class="form-control" readonly value="{{case.court.court_type}}">
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label for="clientid">Court Place</label>
+                            <input type="text" class="form-control" readonly value="{{case.court.place}}">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="clientid">Case History (If Any)</label>
+                            <input type="text" class="form-control" readonly >
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="clientid">Result</label>
+                            <input type="text" class="form-control" readonly value="{{case.decision_sought}}">
+                        </div>
+                    </div>
+                </form>
+                <div class="table-responsive-sm">
+                <table class="table table-bordered" id="myTable">
+                    <thead>
+                        <tr class="bg-dark text-light">
+                            <th scope="col">Hearing Date</th>
+                            <th scope="col">Payment Status</th>                            
+                            <th scope="col">Taxable Amount</th>
+                            <th scope="col">GST (In Persentage)</th>                            
+                            <th scope="col">Invoice</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for i in invoices %}
+                        <tr>
+                            <td style="width: 15vw;">{{i.hearing.hearing_at}}</td>
+                            <td style="width: 15vw;">{{i.payment_status}}</td>
+                            <td style="width: 10vw;">{{i.taxable_total}}</td>
+                            <td style="width: 10vw;">{{i.gst}}</td>
+                           {%if i.invoice_doc%}
+                                <td style="width: 15vw;"><a href="{{i.invoice_doc.url}}" target="_blank" >Download</a></td>
+                            {%else%}
+                                <td style="width: 15vw;"></td>
+                            {%endif%}
+                            <td style="width: 20vw;">
+                                <button type="button" class="btn btn-success" data-toggle="modal" style="margin: 3px;"
+                                    data-target="#{{i.pk}}"><i class="fa fa-pencil"></i></button>
+                                {% comment %} <button type="button" class="btn btn-danger" style="margin: 3px;"><a href="#"><i
+                                            class="far fa-trash-alt"></i></a></button> {% endcomment %}
+
+                                <div class="modal fade" id="{{i.pk}}" tabindex="-1" role="dialog"
+                                    aria-labelledby="{{i.pk}}" aria-hidden="true" role="dialog">
+                                    <div class="modal-dialog modal-lg" role="document">
+                                        <div class="modal-content modal-lg">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="{{i.pk}}">Edit Details</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="{% url 'editinvoice' user case.pk %}" method="POST" enctype="multipart/form-data">
+                                                    {% csrf_token %}
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-11">
+                                                            <label for="hearing">Hearing Date</label>
+                                                            <input type="text" class="form-control" readonly  name="hearing_date" value="{{i.hearing.hearing_at}}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-11">
+                                                            <label for="casestatus">Payment Stauts</label>
+                                                
+                                                            <div class="col-sm-5">
+                                                                <select class="form-control" name="paymentstatus" required>
+                                                                    <option value="">Nothing Selected</option>
+                                                                    <option value="UNPAID">Unpaid</option>
+                                                                    <option value="PAID">Paid</option>
+                                                                </select>
+                                                            </div>
+                   
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-11">
+                                                            <label for="amount">Taxable Amount</label>
+                                                            <input type="number" class="form-control" name="taxable_total" value="{{i.taxable_total}}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-11">
+                                                            <label for="gst">GST (In Persentage)</label>
+                                                            <input type="number" class="form-control" name="gst" value="{{i.gst}}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-11">
+                                                            <label for="invoice">Invoice</label>
+                                                            {% comment %} <input type="file" class="form-control"> {% endcomment %}
+                                                            {{form.as_p}}
+                                                        </div>
+                                                    </div>
+                                                    <input type="submit" class="btn btn-primary" value="Save" style="float:right    ">
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </td>
+                        </tr>
+                        {%endfor%}
+                    </tbody>
+                </table>
+                </div>
+
+                <button onclick="return back()" class="btn btn-primary" style="float: right; margin: 20px;">Back</button>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+    <script>
+        function back() {
+            window.history.back();
+        }        
+    </script>
+
+
+</body>
+
+</html>

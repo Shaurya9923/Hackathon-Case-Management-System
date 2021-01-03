@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Document</title>
+
+    <style>
+        .notification {
+            margin-top: 27px;
+            margin-bottom: 27px;
+            width: 500px;
+            height: 600px;
+            text-align: center;
+            border: 1px solid #d3dee2;
+        }
+
+        .heading {
+            background-color: #26a69a;
+            color: #FFFFFF;
+            padding: 9px;
+        }
+
+        .res {
+            margin-top: 27px;
+        }
+        .message {
+            text-align: justify;
+            padding-left: 27px;
+            margin-right: 27px;
+            margin-bottom: 0;
+            color: #292B2C;
+        }
+        .file{
+            margin: 27px;
+            margin-top: 36px;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="notification">
+        <h2 class="heading display-5">Court Repository</h2>
+        <!-- <img src="{% static 'img/Notifiction.jpg' %}" alt="notification image" width="100" height="100" style="margin: 36px;"> -->
+        <p class="message res">
+            Hey This is our Mail Notification,
+        </p>
+        <p class="message">
+            
+            {{id}}
+        </p>
+        <div class="file">
+            {{caseTitle}}
+        </div>
+        <div>
+            {{caseSyno}}
+        </div>
+        <div>
+            {{title}}
+        </div>
+        <div>
+            {{court}}
+        </div>
+    </div>
+</body>
+
+</html>

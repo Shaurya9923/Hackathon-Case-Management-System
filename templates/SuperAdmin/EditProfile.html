@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Repository of Court Case</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/0b1d7c9201.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="Dashboard.css">
+    <script src="Dashboard.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <nav id="sidebar">
+            <ul class="list-unstyled">                
+                <li>
+                    <a href="Dashboard.html"><i class="fa fa-line-chart"
+                            style="margin-right: 10px; font-size: small;"></i>DashBoard</a>
+                </li>
+                
+
+
+                    <li>
+                        <a href="View_Case.html">
+                            <i class="fa fa-eye" style="margin-right: 10px; font-size: small;"></i>View Case</a>
+                    </li>                    
+                
+
+                    <li>
+                        <a href="View_Lawyer.html">
+                            <i class="fa fa-eye" style="margin-right: 10px; font-size: small;"></i>View Lawyer</a>
+                    </li>
+
+
+                <li>
+                    <a href="Invoice.html" role="button"><i class="fa fa-file-text"
+                            style="margin-right: 10px; font-size: small;">
+                        </i>Invoice</a>
+                </li>
+
+                <li>
+                    <a href="{%url 'search' user%}" role="button"><i class="fa fa-search" style="margin-right: 10px; font-size: small;">
+                    </i>Search</a>
+                </li>
+
+                <li>
+                    <a href="Request.html"><i class="fa fa-line-chart"
+                        style="margin-right: 10px; font-size: small;"></i>Request Log</a>
+                </li>
+
+                <!-- <div class="dropdown-container" id="dropmenu3" style="display: none;">
+                    <li>
+                        <a href="Add_Invoice.html">
+                            <i class="fa fa-plus" style="margin-right: 10px; font-size: small;"></i>Add Invoice</a>
+                    </li>
+
+                    <li>
+                        <a href="View_Invoice.html">
+                            <i class="fa fa-eye small" style="margin-right: 10px; font-size: small;"></i>View Invoice</a>
+                    </li>
+                </div> -->
+                
+                <li>
+                    <a href="Notification.html"><i class="fa fa-bell"
+                            style="margin-right: 10px; font-size: small;"></i>Notification</a>
+                </li>
+
+                <li>
+                    <a href="Profile.html" class="active"><i class="fa fa-user small"
+                            style="margin-right: 10px;"></i>Manage
+                        Profile</a>
+                </li>
+
+                <li>
+                    <a href="#"><i class="fa fa-sign-out" style="margin-right: 10px; font-size: small;"></i>Log
+                        Out</a>
+                </li>
+            </ul>
+        </nav>
+
+
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-white">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn  btn-outline-dark">
+                        <i class="fas fa-align-left"></i>
+                        <span>Menu</span>
+                    </button>
+                </div>
+            </nav>
+
+            <!-- main body start -->
+            <div class="container">
+                <h1 class="display-5" style="display: flex; vertical-align: middle;">Edit Profile</h1>
+                <hr class="my-4">
+
+
+                <form method="POST" onsubmit="return validate()" action="Profile.html">
+                    <div class="form-group row">
+                        <label for="judgeid" class="col-sm-3 col-form-label form-label">First Name</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control form-textbox" id="firstName" required>
+                        </div>
+                        <span class="text-danger" id="validationMessageForFirstName"></span>
+                    </div>
+                    <div class="form-group row">
+                        <label for="judgename" class="col-sm-3 col-form-label form-label">Middle Name</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control form-textbox" id="middleName" required>
+                        </div>
+                        <span class="text-danger" id="validationMessageForMiddleName"></span>
+                    </div>
+                    <div class="form-group row">
+                        <label for="qualification" class="col-sm-3 col-form-label form-label">Last Name</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control form-textbox" id="lastName" required>
+                        </div>
+                        <span class="text-danger" id="validationMessageForLastName"></span>
+                    </div>
+                    <div class="form-group row">
+                        <label for="Experience" class="col-sm-3 col-form-label form-label">Email Id</label>
+                        <div class="col-sm-3">
+                            <input type="email" class="form-control form-textbox" id="emailId" required>
+                        </div>
+                        <span class="text-danger" id="validationMessageForEmail"></span>
+                    </div>
+                    
+                    <input class="btn btn-primary" type="submit" value="Edit"
+                        style="margin-top:20px; margin-right: 10px;">
+                </form>
+
+                <button class="btn btn-primary" style="margin-top: 20px;" onclick="return back()">Back</button>
+                <button class="btn btn-primary" style="margin-left:10px; margin-top: 20px;"><a href="changePassword.html">Change
+                        Password</a></button>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+
+    </script>
+    <script>
+        function back() {
+            window.history.back();
+        }
+    </script>
+
+    <script>
+        function validate() {
+            /*First Name Validation Start*/
+            var firstName = document.getElementById('firstName').value;
+            var firstNameRegex = /^[A-Za-z]+$/;
+            if (firstName.length < 3) {
+                document.getElementById('validationMessageForFirstName').innerHTML = "Please enter name more than 3 characters";
+                return false;
+            }
+            if (firstName.length > 15) {
+                document.getElementById('validationMessageForFirstName').innerHTML = "Please enter name less than 15 characters";
+                return false;
+            }
+            if (firstNameRegex.test(firstName)) {
+                document.getElementById('validationMessageForFirstName').innerHTML = "";
+            } else {
+                document.getElementById('validationMessageForFirstName').innerHTML = "Please enter alphabets only";
+                return false;
+            }
+
+            /*First Name Validation Ends*/
+
+            /*Middle Name Validation Starts*/
+            var middleName = document.getElementById('middleName').value;
+            var middleNameRegex = /^[A-Za-z]+$/;
+            if (middleName.length < 3) {
+                document.getElementById('validationMessageForMiddleName').innerHTML = "Please enter name more than 3 characters";
+                return false;
+            }
+            if (middleName.length > 15) {
+                document.getElementById('validationMessageForMiddleName').innerHTML = "Please enter name less than 15 characters";
+                return false;
+            }
+            if (middleNameRegex.test(middleName)) {
+                document.getElementById('validationMessageForMiddleName').innerHTML = "";
+            } else {
+                document.getElementById('validationMessageForMiddleName').innerHTML = "Please enter alphabets only";
+                return false;
+            }
+            /* Middle Name Validation Ends*/
+            /*Last Name Validation Start*/
+            var lastName = document.getElementById('lastName').value;
+            var lastNameRegex = /^[A-Za-z]+$/;
+            if (lastName.length < 2) {
+                document.getElementById('validationMessageForLastName').innerHTML = "Please enter name more than 2 characters";
+                return false;
+            }
+            if (lastName.length > 15) {
+                document.getElementById('validationMessageForLastName').innerHTML = "Please enter name less than 15 characters";
+                return false;
+            }
+            if (lastNameRegex.test(lastName)) {
+                document.getElementById('validationMessageForLastName').innerHTML = "";
+            } else {
+                document.getElementById('validationMessageForLastName').innerHTML = "Please enter alphabets only";
+                return false;
+            }
+            /*Last Name Validation Ends*/
+            /*Email Id Validation Start*/
+            var email = document.getElementById('emailId').value;
+            if (email.indexOf('@') == 0) {
+                document.getElementById('validationMessageForEmail').innerHTML = "Please enter proper email format";
+                return false;
+            }
+
+            if ((email.charAt(email.length - 4) != '.') && (email.charAt(email.length - 3) != '.')) {
+                document.getElementById('validationMessageForEmail').innerHTML = "Please enter proper email format for .";
+                return false;
+            }
+            /*Password Validation Start*/
+            var password = document.getElementById("password").value;
+            var cpassword = document.getElementById('confirmPassword').value;
+            if (password.length < 8) {
+                document.getElementById('validationMessageForPassword').innerHTML = "Please enter password of atleast 8 characters";
+                return false;
+            }
+            if (password.length > 16) {
+                document.getElementById('validationMessageForPassword').innerHTML = "Please enter password of less than 16 characters";
+                return false;
+            }
+            if (password == cpassword) {
+                document.getElementById('validationMessageForPassword').innerHTML = "";
+            } else {
+                document.getElementById('validationMessageForConfirmPassword').innerHTML = "Password doesn't match";
+                return false;
+            }
+            /*Password Validation Ends*/
+            /*Contact Number Validation Starts*/
+            var contactNo = document.getElementById('contactNumber').value;
+            if ((contactNo.length < 10) && (contactNo > 10)) {
+                document.getElementById('validationMessageForContactNumber').innerHTML = "Please enter 10 digit number";
+                return false;
+            }
+            if (isNaN(contactNo)) {
+                document.getElementById('validationMessageForContactNumber').innerHTML = "Please enter digits only";
+                return false;
+            }
+            /*Contact Number Validation Ends*/
+        }                   
+    </script>
+
+</body>
+
+</html>

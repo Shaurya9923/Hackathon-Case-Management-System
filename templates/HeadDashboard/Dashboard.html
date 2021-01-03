@@ -1,0 +1,227 @@
+{%load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Repository of Court Case</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/0b1d7c9201.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{%static 'css/Dashboard/Dashboard.css' %}">
+    <script src="{%static 'js/Dashboard/Dashboard.js' %}"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <nav id="sidebar">
+            <ul class="list-unstyled">                  
+                <li>
+                    <a href="{%url 'nodaldashboard' user %}" class="active"><i class="fa fa-line-chart" 
+                        style="margin-right: 10px; font-size: small;"></i>DashBoard</a>
+                </li>
+
+
+                
+
+                    <li>
+                        <a href="{% url 'viewcase' user %}">
+                            <i class="fa fa-eye" style="margin-right: 10px; font-size: small;"></i>View Case</a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a href="{%url 'viewlawyer' user %}">
+                            <i class="fa fa-eye" style="margin-right: 10px; font-size: small;"></i>View Lawyer</a>
+                    </li>
+                
+
+                <li>
+                    <a href="{% url 'invoicenodal' user%}" role="button"><i class="fa fa-file-text" style="margin-right: 10px; font-size: small;">
+                    </i>Invoice</a>
+                </li>
+
+                <!-- <div class="dropdown-container" id="dropmenu3" style="display: none;">
+                    <li>
+                        <a href="Add_Invoice.html">
+                            <i class="fa fa-plus" style="margin-right: 10px; font-size: small;"></i>Add Invoice</a>
+                    </li>
+
+                    <li>
+                        <a href="View_Invoice.html">
+                            <i class="fa fa-eye small" style="margin-right: 10px; font-size: small;"></i>View Invoice</a>
+                    </li>
+                </div> -->                
+
+                <li>
+                    <a href="{%url 'search' user%}" role="button"><i class="fa fa-search" style="margin-right: 10px; font-size: small;">
+                    </i>Search</a>
+                </li>
+
+                <li>
+                    <a href="{% url 'notify' user %}" ><i class="fa fa-bell"
+                            style="margin-right: 10px; font-size: small;"></i>Notification</a>
+                </li>
+
+                <li>
+                    <a href="{%url 'nodalmanageprofile' user %}"><i class="fa fa-user small" style="margin-right: 10px;"></i>Manage
+                        Profile</a>
+                </li>
+
+                <li>
+                    <a href="{% url 'logout' %}"><i class="fa fa-sign-out" style="margin-right: 10px; font-size: small;"></i>Log
+                        Out</a>
+                </li>
+            </ul>
+        </nav>
+
+
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-white">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn  btn-outline-dark">
+                        <i class="fas fa-align-left"></i>
+                        <span>Menu</span>
+                    </button>
+                </div>
+            </nav>
+
+           <div class="container">
+                <h1 class="display-5" style="display: flex; vertical-align: middle;">Dashboard</h1>
+                <hr class="my-4">
+                <div class="status1 row justify-content-center">
+                    <div class="one row">
+                        <div class="col-sm-12">
+                            <div class="card card-counter1">
+                                <div class="card-body">
+                                    <h4 class="card-title">TOTAL</h4>
+                                    <h1 class="card-text counter" style="float: right;">{{total}}</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="two row">
+                        <div class="col-sm-12">
+                            <div class="card card-counter2">
+                                <div class="card-body">
+                                    <h4 class="card-title">WON</h4>
+                                    <h1 class="card-text counter" style="float: right;">{{won}}</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="three row">
+                        <div class="col-sm-12">
+                            <div class="card card-counter3">
+                                <div class="card-body">
+                                    <h4 class="card-title">PENDING</h4>
+                                    <h1 class="card-text counter" style="float: right;">{{pending}}</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="four row">
+                        <div class="col-sm-12">
+                            <div class="card card-counter4">
+                                <div class="card-body">
+                                    <h4 class="card-title">DEFEAT</h4>
+                                    <h1 class="card-text counter" style="float: right;">{{defeat}}</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="five row">
+                        <div class="col-sm-12">
+                            <div class="card card-counter5">
+                                <div class="card-body">
+                                    <h4 class="card-title">LAWYER</h4>
+                                    <h1 class="card-text counter" style="float: right;">{{lawyers}}</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="six row">
+                        <div class="col-sm-12">
+                            <div class="card card-counter6">
+                                <div class="card-body">
+                                    <h4 class="card-title">USER</h4>
+                                    <h1 class="card-text counter" style="float: right;">{{users}}</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="status2 row">
+                    <div class="col-md-4">
+                        <div class="chart" data-percent="{{won_per}}" data-bar-color="#007E33">{{won_per}}%
+                            <h4 class="card-title" style="margin: 10px;">WON</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="chart" data-percent="{{pen_per}}" data-bar-color="#FF8800">{{pen_per}}%
+                            <h4 class="card-title" style="margin: 10px;">PENDING</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="chart" data-percent="{{def_per}}" data-bar-color="#CC0000">{{def_per}}%
+                            <h4 class="card-title" style="margin: 10px;">DEFEAT</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.0/jquery.waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/easy-pie-chart/2.1.6/jquery.easypiechart.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+
+    </script>
+
+    <script>
+        jQuery(document).ready(function () {
+            $('.counter').counterUp({
+                delay: 100,
+                time: 1000,
+            });
+        });
+
+        $(function () {
+            $('.chart').easyPieChart({
+                trackColor: false,
+                scaleColor: false,
+                scaleLength: 10,
+                lineCap: 'round',
+                lineWidth: 7,
+                rotate: 0,
+            });
+        });
+    </script>
+
+</body>
+
+</html>

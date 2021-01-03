@@ -1,0 +1,200 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Repository of Court Case</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/0b1d7c9201.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/Dashboard/Dashboard.css' %}">
+    <script src="{% static 'js/Dashboard/Dashboard.js' %}"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <nav id="sidebar">
+            <ul class="list-unstyled">
+                   
+
+                <li>
+            
+                    <a href="{% url 'nodaldashboard' user %}"><i class="fa fa-line-chart" 
+                        style="margin-right: 10px; font-size: small;"></i>DashBoard</a>
+                </li>                
+
+                <li id="drop1" onclick="Func1()">
+                    <a href="#" role="button"><i class="fa fa-file" style="margin-right: 10px; font-size: small;"></i>Cases<i
+                            class="fa fa-caret-down" style="margin-left: 103px;"></i></a>
+                </li>
+
+                <div class="dropdown-container" id="dropmenu1" style="display: block;">
+                    <li>
+                        <a href="{% url 'addcase' user %}">
+                            <i class="fa fa-plus" style="margin-right: 10px; font-size: small;"></i>Add Case</a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'viewcase' user %}">
+                            <i class="fa fa-eye" style="margin-right: 10px; font-size: small;"></i>View Case</a>
+                    </li>
+                </div>
+
+                <li id="drop2" onclick="Func2()">
+                    <a href="#" role="button"><i class="fa fa-address-card" style="margin-right: 10px; font-size: small;">
+                    </i>Lawyer<i class="fa fa-caret-down" style="margin-left: 93px;"></i></a>
+                </li>
+
+                <div class="dropdown-container" id="dropmenu2" style="display: none;">
+                    <li>
+                        <a href="{% url 'addlawyer' user %}">
+                            <i class="fa fa-plus" style="margin-right: 10px; font-size: small;"></i>Add Lawyer</a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'viewlawyer' user %}">
+                            <i class="fa fa-eye" style="margin-right: 10px; font-size: small;"></i>View Lawyer</a>
+                    </li>
+                </div>
+
+                <li>
+                    <a href="{% url 'invoicenodal' user%}" class="active" role="button"><i class="fa fa-file-text" style="margin-right: 10px; font-size: small;">
+                    </i>Invoice</a>
+                </li>
+
+                <li>
+                    <a href="{%url 'search' user%}" role="button"><i class="fa fa-search" style="margin-right: 10px; font-size: small;">
+                    </i>Search</a>
+                </li>
+
+                <!-- <div class="dropdown-container" id="dropmenu3" style="display: none;">
+                    <li>
+                        <a href="Add_Invoice.html">
+                            <i class="fa fa-plus" style="margin-right: 10px; font-size: small;"></i>Add Invoice</a>
+                    </li>
+
+                    <li>
+                        <a href="View_Invoice.html">
+                            <i class="fa fa-eye small" style="margin-right: 10px; font-size: small;"></i>View Invoice</a>
+                    </li>
+                </div> -->
+
+                <li id="drop4" onclick="Func4()">
+                    <a href="#" role="button">
+                        <i class="fa fa-users" style="margin-right: 10px; font-size: small;"></i>Users<i 
+                           class="fa fa-caret-down" style="margin-left: 105px;"></i></a>
+                </li>
+
+                <div class="dropdown-container" id="dropmenu4" style="display: none;">
+                    <li>
+                        <a href="{% url 'adduser' user %}">
+                            <i class="fa fa-plus" style="margin-right: 10px; font-size: small;"></i>Add User</a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'viewuser' user %}">
+                            <i class="fa fa-eye small" style="margin-right: 10px; font-size: small;"></i>View User</a>
+                    </li>
+                </div>
+
+                <li>
+                    <a href="{% url 'notify' user %}"><i class="fa fa-bell"
+                            style="margin-right: 10px; font-size: small;"></i>Notification</a>
+                </li>
+
+                <li>
+                    <a href="{% url 'nodalmanageprofile' user %}"><i class="fa fa-user small" style="margin-right: 10px;"></i>Manage
+                        Profile</a>
+                </li>
+
+                <li>
+                    <a href="{% url 'logout' %}"><i class="fa fa-sign-out" style="margin-right: 10px; font-size: small;"></i>Log
+                        Out</a>
+                </li>
+            </ul>
+        </nav>
+
+
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-white">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn  btn-outline-dark">
+                        <i class="fas fa-align-left"></i>
+                        <span>Menu</span>
+                    </button>
+                </div>
+            </nav>
+
+            <!-- main body start -->
+            <div class="container">
+                <h1 class="display-5" style="display: flex; vertical-align: middle;">Invoice</h1>
+                <hr class="my-4">
+                <table class="table table-bordered" id="myTable">
+                    <thead>
+                        <tr class="bg-dark text-light">
+                            <th scope="col">Case Id</th>
+                            <th scope="col">Case Type</th>
+                            <th scope="col">Case Subject</th>
+                            <th scope="col">Lawyer Name</th>
+                            <th scope="col">Result</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        {% for i in cases %}
+                        <tr>
+                            <td scope="row">{{i.pk}}</td>
+                            <td>{{i.type}}</td>
+                            <td>{{i.title}}</td>
+                            {%for j in case_lawyer%}
+                                {%for k in j%}  
+                                    {%if k.case.pk == i.pk%}
+                                        <td>{{k.lawyer.first_name}} {{k.lawyer.middle_name}} {{k.lawyer.last_name}}</td>
+                                    {%endif%}
+                                {%endfor%}
+                            {%endfor%}
+                                                      
+                            <td style="width: 10vw;">{{i.decision_sought}}</td>
+                            <td style="width: 5vw; text-align: center;">
+                                <button type="button" class="btn btn-primary"><a
+                                        href="{% url 'viewinvoice' user i.pk %}"><i class="far fa-eye"></i></a></button>
+                            </td>
+                        </tr>                        
+                        {%endfor%}
+                                                
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+
+    </script>
+
+
+</body>
+
+</html>
